@@ -32,11 +32,11 @@ get_index :: proc(v: Vec3, i: int) -> f64 {
 	if i < 3 {
 		return vector[i]
 	} else {
-		return 0.0
+		return -1.0
 	}
 }
 
-set_index :: proc(v: Vec3, i: int, value: f64) {
+set_index :: proc(v: ^Vec3, i: int, value: f64) {
 	vector := v
 	if i < 3 {
 		vector[i] = value
