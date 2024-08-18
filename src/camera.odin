@@ -13,7 +13,7 @@ viewport_height := 2.0
 viewport_width := viewport_height * (f64(image_width) / f64(image_height))
 
 viewport_width_vector := init_with_values(viewport_width, 0, 0)
-viewport_height_vector := init_with_values(-viewport_height, 0, 0)
+viewport_height_vector := init_with_values(0, -viewport_height, 0)
 
 pixel_delta_width := get_veclength(viewport_width_vector) / f64(image_width)
 pixel_delta_height := get_veclength(viewport_height_vector) / f64(image_height)

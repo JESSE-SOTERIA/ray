@@ -23,17 +23,14 @@ get_z :: proc(v: Vec3) -> f64 {return v.b}
 
 
 negate :: proc(v: Vec3) -> Vec3 {
-	return Vec3{-v[0], -v[1], -v[2]}
+	return Vec3{-v.x, -v.y, -v.z}
 }
 
 get_index :: proc(v: Vec3, i: int) -> f64 {
 	//shadow copies
 	vector, index := v, i
-	if i < 3 {
-		return vector[i]
-	} else {
-		return -1.0
-	}
+	assert(i < 3, "get_index was called with a value greater than 2")
+	return vector[i]
 }
 
 set_index :: proc(v: ^Vec3, i: int, value: f64) {
@@ -63,7 +60,8 @@ get_veclength :: proc(v: Vec3) -> f64 {
 }
 
 vec_len_squared :: proc(v: Vec3) -> f64 {
-	return v[0] * v[0] + v[1] * v[1] + v[2] * v[2]
+	vector := v
+	return get_veclength(vector) * get_veclength(vector)
 }
 
 get_unit :: proc(v: Vec3) -> Vec3 {
