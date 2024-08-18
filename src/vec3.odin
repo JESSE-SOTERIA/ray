@@ -17,9 +17,9 @@ init_with_values :: proc(x, y, z: f64) -> Vec3 {
 	return Vec3{x, y, z}
 }
 
-get_x :: proc(v: Vec3) -> f64 {return v.r}
-get_y :: proc(v: Vec3) -> f64 {return v.g}
-get_z :: proc(v: Vec3) -> f64 {return v.b}
+get_x :: proc(v: Vec3) -> f64 {return v[0]}
+get_y :: proc(v: Vec3) -> f64 {return v[1]}
+get_z :: proc(v: Vec3) -> f64 {return v[2]}
 
 
 negate :: proc(v: Vec3) -> Vec3 {
@@ -52,6 +52,10 @@ add_vectors :: proc(v1, v2: Vec3) -> Vec3 {
 }
 
 scale_down_vector :: proc(v: Vec3, scalar: f64) -> Vec3 {
+	assert(
+		scalar > 0,
+		"scale_down_vector function called with a scalar that leads to division by zero",
+	)
 	return scale_vector(v, 1 / scalar)
 }
 

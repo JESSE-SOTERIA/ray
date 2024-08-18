@@ -10,9 +10,9 @@ write_color :: proc(file: os.Handle, pixel_color: Color) {
 	g := get_y(pixel_color.y)
 	b := get_z(pixel_color.z)
 
-	rbyte := i32(2555.999 * r)
-	gbyte := i32(2555.999 * g)
-	bbyte := i32(2555.999 * b)
+	rbyte := i32(255.999 * r)
+	gbyte := i32(255.999 * g)
+	bbyte := i32(255.999 * b)
 
 	//write out the color components.
 	os.write_string(file, fmt.tprintf("%d %d %d\n", rbyte, gbyte, bbyte))
