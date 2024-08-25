@@ -32,14 +32,17 @@ main :: proc() {
 
 	// Generate and write pixel data
 	for i := 0; i < image_height; i += 1 {
+
 		fmt.printf("\rscanlines remaining: %d ", image_height - i)
+
+		pixel_center := pixel00_loc + (f64(i) * pixel_delta_height)
+
 		for j := 0; j < image_width; j += 1 {
-			pixel_center :=
-				pixel00_loc + (f64(j) * pixel_delta_width) + (f64(j) * pixel_delta_height)
 			ray_direction := pixel_center - camera_center
 			r := ray_init(camera_center, ray_direction)
 			pixel_color := ray_color(r)
 			write_color(file, pixel_color)
+			pixel_center = pixel00_loc + (f64(j) * pixel_delta_width)
 		}
 	}
 

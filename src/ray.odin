@@ -18,8 +18,7 @@ ray_at :: proc(ray: Ray, scalar: f64) -> Point {
 }
 
 ray_color :: proc(ray: Ray) -> Color {
-	unit_direction := get_unit(ray.direction)
-	a := 0.5 * (get_y(unit_direction) + 1.0)
+	a := 0.5 * (get_x(ray.direction) + 1.0)
 	return (1.0 - a) * Color{1.0, 1.0, 1.0} + a * Color{0.5, 0.7, 1.0}
 }
 
