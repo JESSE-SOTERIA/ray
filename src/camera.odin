@@ -29,4 +29,4 @@ viewport_upper_left :=
 
 //world space co-ordinate for the center of the first pixel (top left)
 //move from viewport upper left by half of a pixel width and height
-pixel00_loc := viewport_upper_left + 0.5 * (pixel_delta_width + pixel_delta_height)
+pixel00_loc := viewport_upper_left + (0.5 * pixel_delta_width) + (0.5 * pixel_delta_height)

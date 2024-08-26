@@ -6,9 +6,9 @@ import "core:os"
 
 write_color :: proc(file: os.Handle, pixel_color: Color) {
 
-	r := get_x(pixel_color.x)
-	g := get_y(pixel_color.y)
-	b := get_z(pixel_color.z)
+	r := pixel_color.x
+	g := pixel_color.y
+	b := pixel_color.z
 
 	rbyte := i32(255.999 * r)
 	gbyte := i32(255.999 * g)
@@ -30,7 +30,6 @@ main :: proc() {
 
 	os.write_string(file, fmt.tprintf("P3\n%d %d\n255\n", image_width, image_height))
 
-	// Generate and write pixel data
 	for i := 0; i < image_height; i += 1 {
 
 		fmt.printf("\rscanlines remaining: %d ", image_height - i)
@@ -40,9 +39,8 @@ main :: proc() {
 		for j := 0; j < image_width; j += 1 {
 			ray_direction := pixel_center - camera_center
 			r := ray_init(camera_center, ray_direction)
-			pixel_color := ray_color(r)
-			write_color(file, pixel_color)
-			pixel_center = pixel00_loc + (f64(j) * pixel_delta_width)
+			write_color(file, ray_color(r))
+			pixel_center += pixel_delta_width
 		}
 	}
 
